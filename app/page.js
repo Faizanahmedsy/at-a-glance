@@ -1,7 +1,13 @@
 "use client";
+import AddTaskModal from "@/components/Modals/AddTaskModal";
 import {
   Avatar,
   Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Chip,
+  CircularProgress,
   Divider,
   Modal,
   ModalBody,
@@ -15,8 +21,8 @@ import Image from "next/image";
 export default function Home() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
-    <main className="min-h-screen grid grid-cols-3">
-      <div className="border-red-300 box-border  p-14">
+    <main className="min-h-screen grid grid-cols-3 py-14">
+      <div className="border-red-300 box-border  px-14">
         <div className="flex text-center font-bold gap-4 justify-center">
           <Avatar
             isBordered
@@ -39,47 +45,41 @@ export default function Home() {
           Add a task
         </Button>
       </div>
-      {/* <div>Faizan</div>
-      <div>Faizan</div> */}
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                Modal Title
-              </ModalHeader>
-              <ModalBody>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat
-                  consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
-                  incididunt cillum quis. Velit duis sit officia eiusmod Lorem
-                  aliqua enim laboris do dolor eiusmod. Et mollit incididunt
-                  nisi consectetur esse laborum eiusmod pariatur proident Lorem
-                  eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+      <div>
+        <Card className="w-[240px] h-[240px] border-none bg-gradient-to-br from-violet-500 to-fuchsia-500">
+          <CardBody className="justify-center items-center pb-0">
+            <CircularProgress
+              classNames={{
+                svg: "w-36 h-36 drop-shadow-md",
+                indicator: "stroke-white",
+                track: "stroke-white/10",
+                value: "text-3xl font-semibold text-white",
+              }}
+              value={70}
+              strokeWidth={4}
+              showValueLabel={true}
+            />
+          </CardBody>
+          <CardFooter className="justify-center items-center pt-0">
+            <Chip
+              classNames={{
+                base: "border-1 border-white/30",
+                content: "text-white/90 text-small font-semibold",
+              }}
+              variant="bordered"
+            >
+              2800 Data points
+            </Chip>
+          </CardFooter>
+        </Card>
+      </div>
+      {/* <div>Faizan</div> */}
+
+      <AddTaskModal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        onOpen={onOpen}
+      />
     </main>
   );
 }
