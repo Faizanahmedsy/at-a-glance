@@ -7,8 +7,18 @@ import {
   ModalHeader,
 } from "@nextui-org/react";
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 
-const AddTaskModal = ({ isOpen, onOpenChange, onOpen }) => {
+const AddTaskModal = ({ isOpen, onOpenChange, onOpen, handleAddTask }) => {
+  const newTask = {
+    name: "Task 4",
+    description: "This is task 4",
+    status: "Active",
+    statusColor: "secondary",
+    category: "Work",
+    id: uuidv4(),
+  };
+
   return (
     <div>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur">
@@ -42,7 +52,11 @@ const AddTaskModal = ({ isOpen, onOpenChange, onOpen }) => {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                <Button
+                  color="primary"
+                  onPress={onClose}
+                  onClick={() => handleAddTask(newTask)}
+                >
                   Action
                 </Button>
               </ModalFooter>
